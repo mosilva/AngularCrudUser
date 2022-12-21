@@ -16,7 +16,7 @@ Quando rodamos o comando acima, é definido na aplicação um módulo para trata
 
 ---
 
-# Adicionando o Angular Material
+## Adicionando o Angular Material
 
 `ng add @angular/material`
 
