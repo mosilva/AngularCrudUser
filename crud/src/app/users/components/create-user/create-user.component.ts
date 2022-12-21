@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { UsersService } from '../../services/users.service';
 import { State } from '../../models/state.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -15,7 +16,10 @@ export class CreateUserComponent implements OnInit {
   public user!: User;
   public states!: State[];
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -51,8 +55,10 @@ export class CreateUserComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.user = this.form.getRawValue();
-    console.log(this.user)
+    const user = this.form.getRawValue();
+    this.usersService.saveUser(user);
+    this.form.reset();
+    this.router.navigate(['/users']);
   }
 
 }

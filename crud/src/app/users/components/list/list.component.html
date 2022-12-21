@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row my-4">
+    <p *ngIf="!users.length" class="d-flex justify-content-center">
+      Não há usuários cadastrados ainda
+    </p>
     <div class="col-4" *ngFor="let user of users">
       <mat-card class="example-card">
         <mat-card-header>
@@ -10,8 +13,14 @@
         <mat-divider class="my-3"></mat-divider>
 
         <mat-card-content>
-          <p><strong>Data de nasc.:</strong> {{ user.birthDate | date: 'dd/MM/yyyy' }}</p>
-          <p><strong>CPF:</strong> {{ user.documentNumber | mask: '000.000.000-00' }}</p>
+          <p>
+            <strong>Data de nasc.:</strong>
+            {{ user.birthDate | date : "dd/MM/yyyy" }}
+          </p>
+          <p>
+            <strong>CPF:</strong>
+            {{ user.documentNumber | mask : "000.000.000-00" }}
+          </p>
           <p>
             <strong>Endereço:</strong> {{ user.address.street }}, nº
             {{ user.address.number }}, {{ user.address.complement }} -

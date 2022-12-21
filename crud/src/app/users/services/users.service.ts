@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State } from '../models/state.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,25 @@ export class UsersService {
         { name: 'Tocantins', abbr: 'TO' }
       ]
     );
+  }
+
+  public getUsers(): User[] {
+    return JSON.parse(localStorage.getItem('USERS') || '[]');
+  }
+
+  public saveUser(user: User): void {
+    user = {
+      ...user,
+      id: crypto.randomUUID(),
+      address: {
+        ...user.address,
+        id: crypto.randomUUID()
+      }
+    }
+
+    const users = this.getUsers();
+
+    users.push(user);
+    localStorage.setItem('USERS', JSON.stringify(users));
   }
 }
