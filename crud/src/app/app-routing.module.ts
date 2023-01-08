@@ -12,27 +12,31 @@ const routes: Routes = [
     children: [
       {
         path: 'create',
-        component: CreateUserComponent
+        component: CreateUserComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: CreateUserComponent,
       },
       {
         path: '',
-        component: ListComponent
-      }
-    ]
+        component: ListComponent,
+      },
+    ],
   },
   {
     path: '',
     redirectTo: 'users',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '**',
-    component: NotFoundComponent
-  }
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
